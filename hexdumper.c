@@ -9,29 +9,29 @@ char* helptext =
     "Usage: hexdump [file]\n"
     "\n"
     "Arguments:\n"
-    "  [file]               File to read (default: STDIN)\n"
+    "  [file]               File to read (default: STDIN).\n"
     "\n"
     "Options:\n"
-    "  -l, --line <int>     Bytes per line in output (default: 16)\n"
-    "  -b, --bytes <int>      Number of bytes to read (default: all)\n"
-    "  -o, --offset <int>   Byte offset at which to begin reading\n"
+    "  -l, --line <int>     Bytes per line in output (default: 16).\n"
+    "  -b, --bytes <int>      Number of bytes to read (default: all).\n"
+    "  -o, --offset <int>   Byte offset at which to begin reading.\n"
     "\n"
     "Flags:\n"
-    "  -h, --help           Display this help text and exit\n"
-    "  -v, --version        Display the version number and exit\n";
+    "  -h, --help           Display this help text and exit.\n"
+    "  -v, --version        Display the version number and exit.\n";
 
 
 void print_line(uint8_t* buffer, int num_bytes, int offset, int line_length) {
-    printf("%6X  ", offset);
+    printf("%6X ", offset);
 
     for (int i = 0; i < line_length; i++) {
-        if (i > 0 && i % 4 == 0) {
+        if (i > 0 && i % 8 == 0) {
             printf(" ");
         }
         if (i < num_bytes) {
             printf(" %02X", buffer[i]);
         } else {
-            printf("  ");
+            printf("   ");
         }
     }
 
@@ -89,7 +89,7 @@ int main(int argc, char** argv) {
 
     // Register our options with their default values.
     ap_int_opt(parser, "line l", 16);
-    ap_int_opt(parser, "num n", -1);
+    ap_int_opt(parser, "bytes b", -1);
     ap_int_opt(parser, "offset o", 0);
 
     // Parse the command line arguments.
@@ -108,17 +108,31 @@ int main(int argc, char** argv) {
 
     // Try seeking to the specified offset.
     int offset = ap_int_value(parser, "offset");
-    if (offset != 0) {
+    
+	if (offset < 0) {
+        // Get the file size.
+        fseek(file, 0, SEEK_END);
+        long file_size = ftell(file);
+        if (file_size == -1) {
+            fprintf(stderr, "Error: cannot determine file size.\n");
+            exit(1);
+        }
+
+        // Adjust the offset to a positive value.
+        offset = file_size + offset;
+    }
+	
+	if (offset != 0) {
         if (fseek(file, offset, SEEK_SET) != 0) {
             fprintf(stderr, "Error: cannot seek to the specified offset.\n");
             exit(1);
         }
     }
 
-    int bytes_to_read = ap_int_value(parser, "num");
+    int bytes_to_read = ap_int_value(parser, "bytes");
     int line_length = ap_int_value(parser, "line");
     dump_file(file, offset, bytes_to_read, line_length);
 
     fclose(file);
     ap_free(parser);
-}ingjoys
+}
