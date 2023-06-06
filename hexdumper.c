@@ -109,7 +109,7 @@ int main(int argc, char** argv) {
     // Try seeking to the specified offset.
     int offset = ap_int_value(parser, "offset");
     
-	if (offset < 0) {
+    if (offset < 0) {
         // Get the file size.
         fseek(file, 0, SEEK_END);
         long file_size = ftell(file);
@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
         offset = file_size + offset;
     }
 	
-	if (offset != 0) {
+    if (offset != 0) {
         if (fseek(file, offset, SEEK_SET) != 0) {
             fprintf(stderr, "Error: cannot seek to the specified offset.\n");
             exit(1);
