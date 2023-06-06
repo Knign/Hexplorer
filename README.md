@@ -6,7 +6,7 @@
 hexdump [file]
 
     Arguments:
-    [file]               File to read (default: STDIN)
+        [file]                 File to read (default: STDIN)
     
     Options:
         -l, --line <int>       Bytes per line in output (default: 16)
