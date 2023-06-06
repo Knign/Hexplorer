@@ -3,10 +3,10 @@
 ## Usage
 
 ```
-hexdump [file]
+hexdumper [FILE]
 
     Arguments:
-        [file]                 File to read (default: STDIN)
+        [FILE]                 File to read (default: STDIN)
     
     Options:
         -l, --line <int>       Bytes per line in output (default: 16)
