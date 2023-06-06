@@ -6,19 +6,19 @@
 
 
 char* helptext =
-    "Usage: hexdump [file]\n"
+    "Usage: hexdump [FILE]\n"
     "\n"
     "Arguments:\n"
-    "  [file]               File to read (default: STDIN).\n"
+    "  [FILE]                 File to read (default: STDIN)\n"
     "\n"
     "Options:\n"
-    "  -l, --line <int>     Bytes per line in output (default: 16).\n"
-    "  -b, --bytes <int>      Number of bytes to read (default: all).\n"
-    "  -o, --offset <int>   Byte offset at which to begin reading.\n"
+    "  -l, --line <int>       Bytes per line in output (default: 16)\n"
+    "  -b, --bytes <int>      Number of bytes to read (default: all)\n"
+    "  -o, --offset <int>     Byte offset at which to begin reading\n"
     "\n"
     "Flags:\n"
-    "  -h, --help           Display this help text and exit.\n"
-    "  -v, --version        Display the version number and exit.\n";
+    "  -h, --help             Display this help text and exit\n"
+    "  -v, --version          Display the version number and exit\n";
 
 
 void print_line(uint8_t* buffer, int num_bytes, int offset, int line_length) {
