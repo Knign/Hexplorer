@@ -1,7 +1,11 @@
 # HexDumper
 
-## Usage
+## Compilation
+```
+gcc hexdumper.c args.c -o hexdumper
+```
 
+## Usage
 ```
 hexdumper [FILE]
 
