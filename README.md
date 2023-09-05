@@ -1,13 +1,13 @@
-# HexDumper
+# Hexplorer
 
 ## Compilation
 ```
-gcc hexdumper.c args.c -o hexdumper
+gcc hexplorer.c args.c -o hexplorer
 ```
 
 ## Usage
 ```
-hexdumper [FILE]
+hexplorer [FILE]
 
     Arguments:
         [FILE]                 File to read
