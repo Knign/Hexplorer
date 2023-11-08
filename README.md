@@ -6,6 +6,7 @@
 ██║  ██║███████╗██╔╝ ██╗██║     ███████╗╚██████╔╝██║  ██║███████╗██║  ██║
 ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝                                                                        
 ````
+Command-Line utility to dump the binary and hexadecimal rendition of a file.
 
 ## Compilation
 ```
